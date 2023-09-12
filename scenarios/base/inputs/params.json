@@ -1,0 +1,46 @@
+﻿[
+	{
+		"info": "need population.geojson in inputs with a columns 'density' in people/km2. Gives metrics per route_id and route_type."
+	},
+	{
+		"category": "catchment_radius",
+		"params": [
+			{
+				"text": "bus",
+				"value": 500,
+				"type": "Number",
+				"units": "metres",
+				"hint": "bus catchment distance",
+				"rules": [
+					"required",
+					"nonNegative"
+				],
+				"name": "bus"
+			},
+			{
+				"text": "subway",
+				"value": 800,
+				"type": "Number",
+				"units": "metres",
+				"hint": "subway catchment distance",
+				"rules": [
+					"required",
+					"nonNegative"
+				],
+				"name": "subway"
+			},
+			{
+				"text": "rail",
+				"value": 1000,
+				"type": "Number",
+				"units": "metres",
+				"hint": "rail catchment distance",
+				"rules": [
+					"required",
+					"nonNegative"
+				],
+				"name": "rail"
+			}
+		]
+	}
+]
