@@ -6,5 +6,5 @@ temp/
 **/.ipynb_checkpoints/**
 log/
 
-scenarios/*
-!/scenarios/base/
+scenarios/*/outputs/
+
