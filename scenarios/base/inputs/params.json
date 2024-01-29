@@ -80,7 +80,7 @@
 					"required",
 					"nonNegative"
 				],
-				"name": "rail"
+				"name": "n_ntlegs"
 			}
 		]
 	}
