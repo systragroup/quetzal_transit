@@ -1,6 +1,6 @@
 ﻿[
 	{
-		"info": "need population.geojson in inputs with a columns 'density' in people/km2. Gives metrics per route_id and route_type."
+		"info": "need population.geojson in inputs with a columns 'density' in people/km2. Gives metrics per route_id and route_type. If OD are provided, return OD_route.geojson"
 	},
 	{
 		"category": "catchment_radius",
@@ -35,6 +35,47 @@
 				"type": "Number",
 				"units": "metres",
 				"hint": "rail catchment distance",
+				"rules": [
+					"required",
+					"nonNegative"
+				],
+				"name": "rail"
+			}
+		]
+	},
+	{
+		"category": "footpaths",
+		"params": [
+			{
+				"text": "max_length",
+				"value": 1000,
+				"type": "Number",
+				"units": "metres",
+				"hint": "max length for a footpath (walk distance between stations)",
+				"rules": [
+					"required",
+					"nonNegative"
+				],
+				"name": "max_length"
+			},
+			{
+				"text": "speed",
+				"value": 2.8,
+				"type": "Number",
+				"units": "km/h",
+				"hint": "as the crow flight walking speed",
+				"rules": [
+					"required",
+					"nonNegative"
+				],
+				"name": "speed"
+			},
+			{
+				"text": "n_ntlegs",
+				"value": 2,
+				"type": "Number",
+				"units": "int",
+				"hint": "number of connection between the origin (or destination) and the footpaths",
 				"rules": [
 					"required",
 					"nonNegative"
