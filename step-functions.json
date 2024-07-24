@@ -8,7 +8,7 @@
       "Parameters": {
         "Payload": {
           "authorization.$": "$.authorization",
-          "model": "quetzal-transit",
+          "model": "quetzal-transit-dca",
           "scenario_path_S3.$": "$.scenario_path_S3",
           "launcher_arg.$": "$.launcher_arg",
           "metadata.$": "$.metadata"
@@ -48,7 +48,7 @@
           "launcher_arg.$": "$.launcher_arg",
           "metadata.$": "$.metadata"
         },
-        "FunctionName": "arn:aws:lambda:ca-central-1:142023388927:function:quetzal-transit:$LATEST"
+        "FunctionName": "arn:aws:lambda:ca-central-1:142023388927:function:quetzal-transit-dca:$LATEST"
       },
       "Retry": [
         {
@@ -83,7 +83,7 @@
           "launcher_arg.$": "$.launcher_arg",
           "metadata.$": "$.metadata"
         },
-        "FunctionName": "arn:aws:lambda:ca-central-1:142023388927:function:quetzal-transit:$LATEST"
+        "FunctionName": "arn:aws:lambda:ca-central-1:142023388927:function:quetzal-transit-dca:$LATEST"
       },
       "Retry": [
         {
@@ -108,5 +108,5 @@
       "End": true
     }
   },
-    "Comment": "Quetzal Transit model"
+    "Comment": "Quetzal Transit DCA model"
 }
