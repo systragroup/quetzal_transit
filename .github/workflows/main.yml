@@ -27,3 +27,8 @@ jobs:
         mkdir -p quetzal-network-editor-backend
         curl -o quetzal-network-editor-backend/main.py https://github.com/systragroup/quetzal-network-editor-backend/blob/main/docker/main.py
         ls # list all
+
+    # Step 4: Build Docker image using the files
+    - name: Build Docker Image
+      run: |
+        docker build -t my-multi-repo-image .
