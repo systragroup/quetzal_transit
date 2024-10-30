@@ -24,6 +24,6 @@ jobs:
     # Step 3: Fetch a single file from Repo2
     - name: Fetch file from Repo2
       run: |
-        mkdir -p repo2
-        curl -o repo2/main.py https://github.com/systragroup/quetzal-network-editor-backend/blob/main/docker/main.py
-        ls -la repo2  # Verify the file is fetched
+        mkdir -p quetzal-network-editor-backend
+        curl -o quetzal-network-editor-backend/main.py https://github.com/systragroup/quetzal-network-editor-backend/blob/main/docker/main.py
+        ls # list all
