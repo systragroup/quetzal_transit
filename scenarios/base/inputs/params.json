@@ -83,5 +83,35 @@
 				"name": "n_ntlegs"
 			}
 		]
+	},
+	{
+		"category": "use_road_network",
+		"params":[
+			{
+				"text":"use_road_network",
+				"value":true,
+				"type":"Boolean",
+				"hint":"use road network",
+				"rules":[
+					"not required"
+				],
+				"name":"use_road_network"			
+		}]
+
+	},
+	{
+		"category": "mesh_step",
+		"params":[
+			{
+				"text":"mesh_step",
+				"value":0.005,
+				"type":"float",
+				"hint":"mesh step",
+				"rules":[
+					">0.0025"
+				],
+				"name":"mesh_step"			
+		}]
+
 	}
 ]
