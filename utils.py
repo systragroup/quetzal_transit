@@ -282,6 +282,7 @@ def population_to_mesh(population: gpd.GeoDataFrame,
 
 def get_acf_distances(nodes: gpd.GeoDataFrame, 
                       mesh: gpd.GeoDataFrame, 
+                      col:str,
                       crs:int,
                       max_dist: float = 3000) -> gpd.GeoDataFrame:
     '''
@@ -298,14 +299,15 @@ def get_acf_distances(nodes: gpd.GeoDataFrame,
     node_dist['node_index'] = node_dist['node_index'].apply(lambda x: nodes_index_dict.get(x))
 
     node_dist = node_dist.explode(['mesh_index','distances'])
-    population_dict = mesh['population'].to_dict()
-    node_dist['population'] = node_dist['mesh_index'].apply(lambda x: population_dict.get(x))
+    population_dict = mesh[col].to_dict()
+    node_dist[col] = node_dist['mesh_index'].apply(lambda x: population_dict.get(x))
     return node_dist
 
 def get_routing_distances(nodes: gpd.GeoDataFrame, 
                          rnodes: gpd.GeoDataFrame, 
                          rlinks: gpd.GeoDataFrame, 
                          mesh: gpd.GeoDataFrame, 
+                         col:str = 'population',
                          weight_col:str = 'length', 
                          dijkstra_limit: float = np.inf) -> gpd.GeoDataFrame:
     '''
@@ -328,7 +330,7 @@ def get_routing_distances(nodes: gpd.GeoDataFrame,
     destinations = mesh['node_index'].values
     mat = routing(origins, destinations, rlinks, weight_col=weight_col, dijkstra_limit=dijkstra_limit)
 
-    mat = mat.merge(mesh.reset_index()[['index','node_index','population']],left_on='destination',right_on='node_index',how='left')
+    mat = mat.merge(mesh.reset_index()[['index','node_index',col]],left_on='destination',right_on='node_index',how='left')
     mat = mat.drop(columns=['destination','node_index']).rename(columns={'index':'mesh_index'})
 
     mat['origin'] = mat['origin'].apply(lambda x: rnodes_node_dict.get(x))

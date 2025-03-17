@@ -1,1 +1,15 @@
-{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"geometry":{"coordinates":[3.204202,46.097405],"type":"Point"},"properties":{"index":"node_2zTroDrJuDCKmipdvjBrtL","stop_code":null,"stop_name":null,"route_width":3},"type":"Feature"},{"geometry":{"coordinates":[3.418726,46.120425],"type":"Point"},"properties":{"index":"node_6CErzt5T6gFonN6RkpvAM6","stop_code":null,"stop_name":null,"route_width":3},"type":"Feature"}]}
+{
+"type": "FeatureCollection",
+"name": "nodes",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "index": "node_4b2VnuC1zTsPzd9ueovVuH", "stop_code": null, "stop_name": "Thiers", "route_width": 3 }, "geometry": { "type": "Point", "coordinates": [ 3.504437626227011, 45.859870749423791 ] } },
+{ "type": "Feature", "properties": { "index": "node_a3ZLvXzFnMqGNGu4hjEYT6", "stop_code": null, "stop_name": "Ornon", "route_width": 3 }, "geometry": { "type": "Point", "coordinates": [ 3.383072606837688, 45.848686431856727 ] } },
+{ "type": "Feature", "properties": { "index": "node_rwwVbaGFJtCHoKTZ6B83Ax", "stop_code": null, "stop_name": "Clermont", "route_width": 3 }, "geometry": { "type": "Point", "coordinates": [ 3.099601821963173, 45.778878453365834 ] } },
+{ "type": "Feature", "properties": { "index": "node_f8Fb3oREhTRCmTVNW7TQzE", "stop_code": null, "stop_name": "Chatel Guyon", "route_width": 3 }, "geometry": { "type": "Point", "coordinates": [ 3.059994706711357, 45.920177679806216 ] } },
+{ "type": "Feature", "properties": { "index": "node_b8e2FB6qm9PUQTLvQvNucR", "stop_code": null, "stop_name": "Riom", "route_width": 3 }, "geometry": { "type": "Point", "coordinates": [ 3.072845958038799, 45.895805345065071 ] } },
+{ "type": "Feature", "properties": { "index": "node_wbHMs2n7zPVS1pp1cXnNw5", "stop_code": null, "stop_name": "Clermont", "route_width": 3 }, "geometry": { "type": "Point", "coordinates": [ 3.102955094611426, 45.780588163757791 ] } },
+{ "type": "Feature", "properties": { "index": "node_2zTroDrJuDCKmipdvjBrtL", "stop_code": null, "stop_name": "Gannat", "route_width": 3 }, "geometry": { "type": "Point", "coordinates": [ 3.204202393364087, 46.097404904005401 ] } },
+{ "type": "Feature", "properties": { "index": "node_6CErzt5T6gFonN6RkpvAM6", "stop_code": null, "stop_name": "Vichy", "route_width": 3 }, "geometry": { "type": "Point", "coordinates": [ 3.418725973068721, 46.120424807712553 ] } }
+]
+}
