@@ -1,12 +1,12 @@
 ﻿[
 	{
-		"info": "need population.geojson in inputs with a columns 'density' in people/km2. Gives metrics per route_id and route_type. If OD are provided, return OD_route.geojson"
+		"info": "To handle the PT network analysis, you need to provide an input file named zonage.geojson with columns 'xxx_density' in item/km² for each category required in the computation of network coverage (eg. population, jobs, health_facilities, etc). \nCatchment radius (in meters) and CAPEX (in €/veh.km) must be filled in the PT links editor, to fit to each route_type. \nThe model returns network indicators as tables and GIS layers that can be displayed here."
 	},
 	{
-		"category": "general",
+		"category": "General",
 		"params": [
 			{
-				"text": "step_size",
+				"text": "mesh step size",
 				"value": 0.005,
 				"type": "Number",
 				"units": "degrees",
@@ -18,7 +18,7 @@
 				"name": "step_size"
 			},
 			{
-				"text": "use_road_network",
+				"text": "use road network for analysis",
 				"value": true,
 				"type": "Boolean",
 				"units": "none",
@@ -28,6 +28,18 @@
 					"nonNegative"
 				],
 				"name": "use_road_network"
+			},
+			{
+				"text": "factor basic day to year",
+				"value": 300,
+				"type": "Number",
+				"units": "none",
+				"hint": "factor to compute yearly indicators from daily basis",
+				"rules": [
+					"required",
+					"nonNegative"
+				],
+				"name": "coef_day_to_year"
 			}
 		]
 	},
@@ -76,7 +88,7 @@
 		"category": "footpaths",
 		"params": [
 			{
-				"text": "max_length",
+				"text": "max length",
 				"value": 1000,
 				"type": "Number",
 				"units": "metres",
@@ -88,7 +100,7 @@
 				"name": "max_length"
 			},
 			{
-				"text": "speed",
+				"text": "walk speed",
 				"value": 2.8,
 				"type": "Number",
 				"units": "km/h",
@@ -100,7 +112,7 @@
 				"name": "speed"
 			},
 			{
-				"text": "n_ntlegs",
+				"text": "number of ntlegs",
 				"value": 2,
 				"type": "Number",
 				"units": "int",
