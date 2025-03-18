@@ -3,14 +3,14 @@
 		"info": "To handle the PT network analysis, you need to provide an input file named zonage.geojson with columns 'xxx_density' in item/km² for each category required in the computation of network coverage (eg. population, jobs, health_facilities, etc). \nCatchment radius (in meters) and CAPEX (in €/veh.km) must be filled in the PT links editor, to fit to each route_type. \nThe model returns network indicators as tables and GIS layers that can be displayed here."
 	},
 	{
-		"category": "General",
+		"category": "general",
 		"params": [
 			{
 				"text": "mesh step size",
 				"value": 0.005,
 				"type": "Number",
 				"units": "degrees",
-				"hint": "mesh step size",
+				"hint": "mesh step size (in degrees, 0.01 ~ 1km)",
 				"rules": [
 					"required",
 					"nonNegative"
@@ -40,47 +40,18 @@
 					"nonNegative"
 				],
 				"name": "coef_day_to_year"
-			}
-		]
-	},
-	{
-		"category": "catchment_radius",
-		"params": [
+			},
 			{
-				"text": "bus",
+				"text": "stop clustering radius",
 				"value": 500,
 				"type": "Number",
-				"units": "metres",
-				"hint": "bus catchment distance",
+				"units": "meters",
+				"hint": "radius of le clustering zone to identify common sections between PT routes",
 				"rules": [
 					"required",
 					"nonNegative"
 				],
-				"name": "bus"
-			},
-			{
-				"text": "subway",
-				"value": 800,
-				"type": "Number",
-				"units": "metres",
-				"hint": "subway catchment distance",
-				"rules": [
-					"required",
-					"nonNegative"
-				],
-				"name": "subway"
-			},
-			{
-				"text": "rail",
-				"value": 1000,
-				"type": "Number",
-				"units": "metres",
-				"hint": "rail catchment distance",
-				"rules": [
-					"required",
-					"nonNegative"
-				],
-				"name": "rail"
+				"name": "clustering_radius"
 			}
 		]
 	},
