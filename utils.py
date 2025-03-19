@@ -57,10 +57,11 @@ def _unstack(mat):
     return res
 
 def routing(origin, destination, links, weight_col='time', dijkstra_limit=np.inf):
+    links[weight_col] = pd.to_numeric(links[weight_col], errors='coerce')
     mat, node_index = sparse_matrix(links[['a', 'b', weight_col]].values)
     index_node = {v: k for k, v in node_index.items()}
     # liste des origines pour le dijkstra
-    origin_sparse = [node_index[x] for x in origin]
+    origin_sparse = [float(node_index[x]) for x in origin]
     origin_dict =  {i:val for i,val in enumerate(origin_sparse)}
     # list des destinations 
     destination_sparse = [node_index[x] for x in destination]
