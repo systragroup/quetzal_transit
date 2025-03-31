@@ -7,4 +7,4 @@ temp/
 log/
 
 scenarios/*/outputs/
-
+scenarios/clermont/inputs/od/
