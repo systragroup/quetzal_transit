@@ -1,5 +1,9 @@
 
-## [5.2] (2025-08-05)
+## [5.2.1] (2025-08-08)
+### Bug fixes
+* periods were not working in pathfinder
+
+## [5.2] (2025-08-08)
 ### Features
 * add isochrone.
 * add bart plot for OD.
