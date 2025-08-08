@@ -1,4 +1,9 @@
 
+
+## [5.2.2] (2025-08-08)
+### Bug fixes
+* isochrone style typo
+
 ## [5.2.1] (2025-08-08)
 ### Bug fixes
 * periods were not working in pathfinder
