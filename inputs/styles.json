@@ -63,5 +63,30 @@
             ]
         },
         "selectedFilter": "od_name"
+    },
+    {
+        "name": "isochrone",
+        "layer": "microservices/transit/isochrone",
+        "displaySettings": {
+            "selectedFeature": "time (mins) (Interactive)",
+            "minWidth": 4,
+            "maxWidth": 4,
+            "numStep": 100,
+            "opacity": 40,
+            "scale": "linear",
+            "cmap": "RdYlGn",
+            "showNaN": true,
+            "reverseColor": true,
+            "minVal": null,
+            "maxVal": null,
+            "fixScale": false,
+            "offset": false,
+            "extrusion": false,
+            "padding": [
+                0,
+                100
+            ]
+        },
+        "selectedFilter": "index"
     }
 ]
