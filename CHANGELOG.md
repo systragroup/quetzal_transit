@@ -1,4 +1,6 @@
-
+## [5.2.3] (2025-08-11)
+### Bug fixes
+* Change DBCAN metric in Quetzal for euclidien. haversine was creating weird zones
 
 ## [5.2.2] (2025-08-08)
 ### Bug fixes
