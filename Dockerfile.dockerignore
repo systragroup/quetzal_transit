@@ -7,5 +7,5 @@ quetzal/.git
 quetzal/.venv
 quetzal/wheels-cp38-win_amd64
 quetzal/docker/infra
-quetzal_transit/scenarios/*
-quetzal_transit/.git/objects
+quetzal-transit-cat-dev/scenarios/*
+quetzal-transit-cat-dev/.git/objects

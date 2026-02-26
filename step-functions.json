@@ -1,108 +1,54 @@
 {
-  "StartAt": "Parallel Iterator",
+  "StartAt": "Authorization",
   "States": {
-    "Parallel Iterator": {
-      "Type": "Map",
-      "InputPath": "$",
-      "ItemsPath": "$.variants",
-      "Parameters": {
-        "scenario_path_S3.$": "$.scenario_path_S3",
-        "metadata.$": "$.metadata",
-        "launcher_arg": {
-          "training_folder.$": "$.launcher_arg.training_folder",
-          "params.$": "$.launcher_arg.params",
-          "period.$": "$$.Map.Item.Value"
-        }
-      },
-      "Iterator": {
-        "StartAt": "Transit analysis",
-        "States": {
-          "Transit analysis": {
-            "Type": "Task",
-            "Resource": "arn:aws:states:::lambda:invoke",
-            "OutputPath": "$.Payload",
-            "Parameters": {
-              "Payload": {
-                "notebook_path": "notebooks/2_model/main.ipynb",
-                "scenario_path_S3.$": "$.scenario_path_S3",
-                "launcher_arg.$": "$.launcher_arg",
-                "metadata.$": "$.metadata"
-              },
-              "FunctionName": "arn:aws:lambda:ca-central-1:142023388927:function:quetzal-transit-api:$LATEST"
-            },
-            "Retry": [
-              {
-                "ErrorEquals": [
-                  "Lambda.ServiceException",
-                  "Lambda.SdkClientException",
-                  "Lambda.TooManyRequestsException"
-                ],
-                "IntervalSeconds": 2,
-                "MaxAttempts": 2,
-                "BackoffRate": 2
-              },
-              {
-                "ErrorEquals": [
-                  "Lambda.AWSLambdaException"
-                ],
-                "IntervalSeconds": 30,
-                "MaxAttempts": 4,
-                "BackoffRate": 2
-              }
-            ],
-            "Next": "Pathfinder"
-          },
-          "Pathfinder": {
-            "Type": "Task",
-            "Resource": "arn:aws:states:::lambda:invoke",
-            "OutputPath": "$.Payload",
-            "Parameters": {
-              "Payload": {
-                "notebook_path": "notebooks/2_model/pathfinder.ipynb",
-                "scenario_path_S3.$": "$.scenario_path_S3",
-                "launcher_arg.$": "$.launcher_arg",
-                "metadata.$": "$.metadata"
-              },
-              "FunctionName": "arn:aws:lambda:ca-central-1:142023388927:function:quetzal-transit-api:$LATEST"
-            },
-            "Retry": [
-              {
-                "ErrorEquals": [
-                  "Lambda.ServiceException",
-                  "Lambda.SdkClientException",
-                  "Lambda.TooManyRequestsException"
-                ],
-                "IntervalSeconds": 2,
-                "MaxAttempts": 2,
-                "BackoffRate": 2
-              },
-              {
-                "ErrorEquals": [
-                  "Lambda.AWSLambdaException"
-                ],
-                "IntervalSeconds": 30,
-                "MaxAttempts": 4,
-                "BackoffRate": 2
-              }
-            ],
-            "End": true
-          }
-        }
-      },
-      "Next": "Merge"
-    },
-    "Merge": {
+    "Authorization": {
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke",
       "OutputPath": "$.Payload",
       "Parameters": {
         "Payload": {
-          "notebook_path": "notebooks/2_model/merge.ipynb",
-          "scenario_path_S3.$": "$[0].scenario_path_S3",
-          "launcher_arg.$": "$[0].launcher_arg",
-          "metadata.$": "$[0].metadata"
+          "authorization.$": "$.authorization",
+          "model": "quetzal-transit-dca",
+          "scenario_path_S3.$": "$.scenario_path_S3",
+          "launcher_arg.$": "$.launcher_arg",
+          "metadata.$": "$.metadata"
         },
-        "FunctionName": "arn:aws:lambda:ca-central-1:142023388927:function:quetzal-transit-api:$LATEST"
+        "FunctionName": "arn:aws:lambda:ca-central-1:142023388927:function:quetzal-api-auth:$LATEST"
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 2,
+          "BackoffRate": 2
+        },
+        {
+          "ErrorEquals": [
+            "Lambda.AWSLambdaException"
+          ],
+          "IntervalSeconds": 30,
+          "MaxAttempts": 4,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "Transit analysis" 
+    },
+    "Transit analysis": { 
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "OutputPath": "$.Payload",
+      "Parameters": {
+        "Payload": {
+          "notebook_path": "notebooks/2_model/main.ipynb",
+          "scenario_path_S3.$": "$.scenario_path_S3",
+          "launcher_arg.$": "$.launcher_arg",
+          "metadata.$": "$.metadata"
+        },
+        "FunctionName": "arn:aws:lambda:ca-central-1:142023388927:function:quetzal-transit-cat-dev:$LATEST"
       },
       "Retry": [
         {
@@ -127,5 +73,5 @@
       "End": true
     }
   },
-  "Comment": "Quetzal Transit model"
+    "Comment": "Quetzal Transit model"
 }
