@@ -1,6 +1,60 @@
 [
     {
-        "info": "To handle the PT network analysis, you need to provide an input file named zonage.geojson with columns 'xxx_density' in item/km² for each category required in the computation of network coverage (eg. population, jobs, health_facilities, etc). \nCatchment radius (in meters) and CAPEX (in €/veh.km) must be filled in the PT links editor, to fit to each route_type. \nThe model returns network indicators as tables and GIS layers that can be displayed here.",
+        "info": "The simulation is split into two parts: \n \n Transit analysis: calculation of network coverage (you need to provide a zonage.geojson file with columns 'xxx_density' in item/km² for each category relevant (population, jobs, health facilities...), required fleet size, line lengths, connections, operating costs, round trip times... \n The model returns tables and GIS layers summing up the properties of the transport lines. \n \n Pathfinder: can be performed using either timetables (a timetable needs to have been provided for each line of the network) or headways (providing headway fields in the links). \n The model returns isochrones showing travel time between stops of the network (or between zones of the zonage file if provided) and shortest paths for origin-destination couples defined under the “OD” tab. \n \n Full documentation is available here: https://systragroup.github.io/quetzal-network-editor-doc/trainings/01_transit_dca.html " ,
+        "model": "default"
+    },
+    {
+        "category": "default values",
+        "params": [
+            {
+                "text": "catchment radius",
+                "value": 500,
+                "type": "meters",
+                "units": "",
+                "hint": "Distance from a station within which a geographic area is considered to be served (used to compute network coverage)",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "road_pt_factor"
+            },
+            {
+                "text": "road pt factor",
+                "value": 1.25,
+                "type": "Number",
+                "units": "",
+                "hint": "Coefficient applied to travel times for modes using the road network (not used if timetables are used)",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "road_pt_factor"
+            },
+            {
+                "text": "dwell time",
+                "value": 30,
+                "type": "Number",
+                "units": "seconds",
+                "hint": "Time a vehicle remains stopped at a stop while passengers board and alight (not used if timetables are used)",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "stop_interval"
+            },
+            {
+                "text": "operation costs",
+                "value": 0.3,
+                "type": "Number",
+                "units": "€/veh.km",
+                "hint": "Average operation costs in €/veh.km",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "capex"
+            }
+        ],
         "model": "default"
     },
     {
@@ -11,7 +65,7 @@
                 "value": 0.005,
                 "type": "Number",
                 "units": "degrees",
-                "hint": "mesh step size (in degrees, 0.01 ~ 1km)",
+                "hint": "Mesh step size (in degrees, 0.01 ~ 1km)",
                 "rules": [
                     "required",
                     "nonNegative"
@@ -23,7 +77,7 @@
                 "value": true,
                 "type": "Boolean",
                 "units": "none",
-                "hint": "use road network to compute population mesh",
+                "hint": "Use road network to compute population mesh",
                 "rules": [
                     "required",
                     "nonNegative"
@@ -34,8 +88,8 @@
                 "text": "factor basic day to year",
                 "value": 300,
                 "type": "Number",
-                "units": "none",
-                "hint": "factor to compute yearly indicators from daily basis",
+                "units": "",
+                "hint": "Factor to compute yearly indicators from daily basis",
                 "rules": [
                     "required",
                     "nonNegative"
@@ -44,10 +98,10 @@
             },
             {
                 "text": "stop clustering radius",
-                "value": 500,
+                "value": 100,
                 "type": "Number",
                 "units": "meters",
-                "hint": "radius of le clustering zone to identify common sections between PT routes",
+                "hint": "Radius of le clustering zone to identify common sections between PT routes",
                 "rules": [
                     "required",
                     "nonNegative"
@@ -65,7 +119,7 @@
                 "value": 1000,
                 "type": "Number",
                 "units": "metres",
-                "hint": "max length for a footpath (walk distance between stations)",
+                "hint": "Max length for a footpath (walk distance between stations)",
                 "rules": [
                     "required",
                     "nonNegative"
@@ -77,7 +131,7 @@
                 "value": 2.8,
                 "type": "Number",
                 "units": "km/h",
-                "hint": "as the crow flight walking speed",
+                "hint": "As the crow flight walking speed",
                 "rules": [
                     "required",
                     "nonNegative"
@@ -86,15 +140,87 @@
             },
             {
                 "text": "number of ntlegs",
-                "value": 2,
+                "value": 5,
                 "type": "Number",
-                "units": "int",
-                "hint": "number of connection between the origin (or destination) and the footpaths",
+                "units": "",
+                "hint": "Number of connection between the origin (or destination) and the footpaths",
                 "rules": [
                     "required",
                     "nonNegative"
                 ],
                 "name": "n_ntlegs"
+            }
+        ],
+        "model": "default"
+    },
+    {
+        "category": "pathfinder params (timetables)",
+        "params": [
+            {
+                "text": "start time",
+                "value": "07:00:00",
+                "type": "String",
+                "units": "",
+                "hint": "Start time of the period (format HH:mm:ss)",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "start_time"
+            },
+            {
+                "text": "end time",
+                "value": "10:00:00",
+                "type": "String",
+                "units": "",
+                "hint": "End time of the period (format HH:mm:ss)",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "end_time"
+            },
+            {
+                "text": "minimum transfer time",
+                "value": 30,
+                "type": "Number",
+                "units": "seconds",
+                "hint": "Minimum time needed for a transfer from a line to another",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "min_transfer_time"
+            },
+            {
+                "text": "transfer penalty",
+                "value": 500,
+                "type": "Number",
+                "units": "seconds",
+                "hint": "Time penalty applied for best itinerary selection penalizing itineraries with connections.",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "transfer_penalty"
+            }
+        ],
+        "model": "default"
+    },
+    {
+        "category": "pathfinder params (headway)",
+        "params": [
+            {
+                "text": "period",
+                "value": "ph",
+                "type": "String",
+                "units": "",
+                "hint": "Period (to choose among periods defined in links)",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "period"
             }
         ],
         "model": "default"

@@ -8,7 +8,7 @@
       "Parameters": {
         "Payload": {
           "authorization.$": "$.authorization",
-          "model": "quetzal-transit-dca",
+          "model": "quetzal-transit-cat-dev",
           "scenario_path_S3.$": "$.scenario_path_S3",
           "launcher_arg.$": "$.launcher_arg",
           "metadata.$": "$.metadata"
@@ -44,6 +44,76 @@
       "Parameters": {
         "Payload": {
           "notebook_path": "notebooks/2_model/main.ipynb",
+          "scenario_path_S3.$": "$.scenario_path_S3",
+          "launcher_arg.$": "$.launcher_arg",
+          "metadata.$": "$.metadata"
+        },
+        "FunctionName": "arn:aws:lambda:ca-central-1:142023388927:function:quetzal-transit-cat-dev:$LATEST"
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 2,
+          "BackoffRate": 2
+        },
+        {
+          "ErrorEquals": [
+            "Lambda.AWSLambdaException"
+          ],
+          "IntervalSeconds": 30,
+          "MaxAttempts": 4,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "Pathfinder (timetables)"
+    },
+    "Pathfinder (timetables)": { 
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "OutputPath": "$.Payload",
+      "Parameters": {
+        "Payload": {
+          "notebook_path": "notebooks/2_model/pathfinder_timetable.ipynb",
+          "scenario_path_S3.$": "$.scenario_path_S3",
+          "launcher_arg.$": "$.launcher_arg",
+          "metadata.$": "$.metadata"
+        },
+        "FunctionName": "arn:aws:lambda:ca-central-1:142023388927:function:quetzal-transit-cat-dev:$LATEST"
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 2,
+          "BackoffRate": 2
+        },
+        {
+          "ErrorEquals": [
+            "Lambda.AWSLambdaException"
+          ],
+          "IntervalSeconds": 30,
+          "MaxAttempts": 4,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "Pathfinder (frequency)"
+    },
+    "Pathfinder (frequency)": { 
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "OutputPath": "$.Payload",
+      "Parameters": {
+        "Payload": {
+          "notebook_path": "notebooks/2_model/pathfinder_headway.ipynb",
           "scenario_path_S3.$": "$.scenario_path_S3",
           "launcher_arg.$": "$.launcher_arg",
           "metadata.$": "$.metadata"

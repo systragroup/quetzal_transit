@@ -1,1 +1,175 @@
-[{"name":"population mesh","layer":"outputs/population_mesh","displaySettings":{"selectedFeature":"population","minWidth":3,"maxWidth":3,"numStep":100,"opacity":100,"scale":"linear","cmap":"OrRd","showNaN":true,"reverseColor":false,"minVal":null,"maxVal":null,"fixScale":false,"offset":false},"selectedFilter":"index"},{"name":"stop catchment","layer":"outputs/nodes","displaySettings":{"selectedFeature":"catchment","minWidth":1,"maxWidth":10,"numStep":100,"opacity":100,"scale":"linear","cmap":"Greens","showNaN":false,"reverseColor":false,"minVal":null,"maxVal":null,"fixScale":false,"offset":false},"selectedFilter":"index"},{"name":"OD routes","layer":"outputs/od_route","displaySettings":{"selectedFeature":"route_color","minWidth":4,"maxWidth":4,"numStep":100,"opacity":100,"scale":"linear","cmap":"OrRd","showNaN":true,"reverseColor":false,"minVal":null,"maxVal":null,"fixScale":false,"offset":false,"extrusion":false,"padding":[0,100]},"selectedFilter":"od_name"}]
+[
+    {
+        "name": "catchment",
+        "layer": "outputs/nodes",
+        "displaySettings": {
+            "selectedFeature": "catchment walk population",
+            "minWidth": 3,
+            "maxWidth": 3,
+            "numStep": 100,
+            "opacity": 100,
+            "scale": "linear",
+            "cmap": "OrRd",
+            "showNaN": true,
+            "reverseColor": false,
+            "minVal": null,
+            "maxVal": null,
+            "fixScale": false,
+            "offset": false
+        },
+        "selectedFilter": "index"
+    },
+    {
+        "name": "connections",
+        "layer": "outputs/hubs",
+        "displaySettings": {
+            "selectedFeature": "nb_lines",
+            "minWidth": 1,
+            "maxWidth": 10,
+            "numStep": 100,
+            "opacity": 100,
+            "scale": "linear",
+            "cmap": "OrRd",
+            "showNaN": false,
+            "reverseColor": false,
+            "minVal": null,
+            "maxVal": null,
+            "fixScale": false,
+            "offset": false
+        },
+        "selectedFilter": "index"
+    },
+    {
+        "name": "OD routes",
+        "layer": "outputs/od_route",
+        "displaySettings": {
+            "selectedFeature": "route_color",
+            "minWidth": 4,
+            "maxWidth": 4,
+            "numStep": 100,
+            "opacity": 100,
+            "scale": "linear",
+            "cmap": "OrRd",
+            "showNaN": true,
+            "reverseColor": false,
+            "minVal": null,
+            "maxVal": null,
+            "fixScale": false,
+            "offset": false,
+            "extrusion": false,
+            "padding": [
+                0,
+                100
+            ]
+        },
+        "selectedFilter": "od_name"
+    },
+    {
+        "name": "isochrone (voronoi)",
+        "layer": "outputs/isochrone_voronoi",
+        "displaySettings": {
+            "selectedFeature": "time (mins) (Interactive)",
+            "minWidth": 4,
+            "maxWidth": 4,
+            "numStep": 100,
+            "opacity": 40,
+            "scale": "linear",
+            "cmap": "RdYlGn",
+            "showNaN": true,
+            "reverseColor": true,
+            "minVal": null,
+            "maxVal": null,
+            "fixScale": false,
+            "offset": false,
+            "extrusion": false,
+            "padding": [
+                0,
+                100
+            ],
+            "legendName": "time (mins) (Interactive)"
+        },
+        "selectedFilter": "index",
+        "version": 1
+    },
+    {
+        "name": "isochrone (zonage)",
+        "layer": "outputs/isochrone_zonage",
+        "displaySettings": {
+            "selectedFeature": "time (mins) (Interactive)",
+            "minWidth": 4,
+            "maxWidth": 4,
+            "numStep": 100,
+            "opacity": 40,
+            "scale": "linear",
+            "cmap": "RdYlGn",
+            "showNaN": true,
+            "reverseColor": true,
+            "minVal": null,
+            "maxVal": null,
+            "fixScale": false,
+            "offset": false,
+            "extrusion": false,
+            "padding": [
+                0,
+                100
+            ],
+            "legendName": "time (mins) (Interactive)"
+        },
+        "selectedFilter": "index",
+        "version": 1
+    },
+    {
+        "name": "common sections",
+        "layer": "outputs/pt_common_sections",
+        "displaySettings": {
+            "selectedFeature": "nb_lines",
+            "minWidth": 4,
+            "maxWidth": 4,
+            "numStep": 100,
+            "opacity": 100,
+            "scale": "linear",
+            "cmap": "RdYlGn",
+            "showNaN": true,
+            "reverseColor": true,
+            "minVal": null,
+            "maxVal": null,
+            "fixScale": false,
+            "offset": false,
+            "extrusion": false,
+            "padding": [
+                0,
+                100
+            ],
+            "legendName": "nb_lines"
+        },
+        "selectedFilter": "index",
+        "version": 1
+    },
+    {
+        "name": "unserved zones",
+        "layer": "outputs/unserved_zones_walk",
+        "displaySettings": {
+            "selectedFeature": "population density",
+            "minWidth": 4,
+            "maxWidth": 4,
+            "numStep": 100,
+            "opacity": 100,
+            "scale": "linear",
+            "cmap": "RdYlGn",
+            "showNaN": true,
+            "reverseColor": true,
+            "minVal": null,
+            "maxVal": null,
+            "fixScale": false,
+            "offset": false,
+            "extrusion": false,
+            "padding": [
+                0,
+                100
+            ],
+            "legendName": "population density"
+        },
+        "selectedFilter": "index",
+        "version": 1
+    }
+]
