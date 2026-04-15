@@ -77,7 +77,7 @@
                 "value": true,
                 "type": "Boolean",
                 "units": "none",
-                "hint": "Use road network to compute population mesh",
+                "hint": "Tick this box to use road network in the simulation (population mesh, common sections, walk on road...)",
                 "rules": [
                     "required",
                     "nonNegative"
@@ -89,7 +89,7 @@
                 "value": 300,
                 "type": "Number",
                 "units": "",
-                "hint": "Factor to compute yearly indicators from daily basis",
+                "hint": "Factor to compute yearly indicators from daily indicators",
                 "rules": [
                     "required",
                     "nonNegative"
@@ -101,12 +101,48 @@
                 "value": 100,
                 "type": "Number",
                 "units": "meters",
-                "hint": "Radius of le clustering zone to identify common sections between PT routes",
+                "hint": "Maximal distance below which two nodes are considered the same stop",
                 "rules": [
                     "required",
                     "nonNegative"
                 ],
                 "name": "clustering_radius"
+            },
+            {
+                "text": "nb voronoi clusters",
+                "value": 500,
+                "type": "Number",
+                "units": "",
+                "hint": "Number of zones used to compute node-to-node isochrones.",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "n_clusters_voronoi"
+            },
+            {
+                "text": "plot ODs?",
+                "value": false,
+                "type": "Boolean",
+                "units": "",
+                "hint": "Check this box to generate OD best path plots. Generation takes ~2 seconds per OD couples",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "plot_ODs"
+            },
+            {
+                "text": "transfer penalty",
+                "value": 600,
+                "type": "Number",
+                "units": "seconds",
+                "hint": "Time penalty applied for best itinerary selection penalizing itineraries with connections.",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "transfer_penalty"
             }
         ],
         "model": "default"
@@ -191,18 +227,6 @@
                     "nonNegative"
                 ],
                 "name": "min_transfer_time"
-            },
-            {
-                "text": "transfer penalty",
-                "value": 500,
-                "type": "Number",
-                "units": "seconds",
-                "hint": "Time penalty applied for best itinerary selection penalizing itineraries with connections.",
-                "rules": [
-                    "required",
-                    "nonNegative"
-                ],
-                "name": "transfer_penalty"
             }
         ],
         "model": "default"
