@@ -227,6 +227,18 @@
                     "nonNegative"
                 ],
                 "name": "min_transfer_time"
+            },
+            {
+                "text": "cutoff",
+                "value": 3600,
+                "type": "Number",
+                "units": "seconds",
+                "hint": "Flexibility over start time and end time",
+                "rules": [
+                    "required",
+                    "nonNegative"
+                ],
+                "name": "cutoff"
             }
         ],
         "model": "default"
